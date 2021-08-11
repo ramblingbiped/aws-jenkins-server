@@ -21,7 +21,9 @@ resource "aws_instance" "jenkins-server" {
     subnet_id = module.vpc.public_subnets[0]
     key_name = "will-test"
 
-    user_data = file("${path.module}/user_data.sh")
+    user_data = templatefile(
+        "${path.module}/user_data.sh.tpl", { jenkins_port = var.jenkins_port }
+    )
 
     tags = merge(
         var.common_tags,
@@ -39,8 +41,8 @@ resource "aws_security_group" "jenkins-server-sg" {
     ingress = [
         {
             description = "Allow HTTP from Public"
-            from_port = 80
-            to_port = 80
+            from_port = var.jenkins_port
+            to_port = var.jenkins_port
             protocol = "tcp"
             cidr_blocks = var.http_ingress_allowed_origin_cidrs
             ipv6_cidr_blocks = null

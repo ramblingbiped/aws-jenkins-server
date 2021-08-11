@@ -46,6 +46,12 @@ variable "http_ingress_allowed_origin_cidrs" {
     default = [ "0.0.0.0/0" ]
 }
 
+variable "jenkins_port" {
+    type = number
+    description = "TCP port used by the Jenkins service"
+    default = 80
+}
+
 variable "common_tags" {
     type = map(string)
     default = {}
