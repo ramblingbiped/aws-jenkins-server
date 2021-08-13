@@ -1,0 +1,24 @@
+name: terraform-tests
+on: [push]
+jobs:
+  terraform-format:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ ./environments/development }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: terraform fmt
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 1.0.2
+        run: terraform fmt
+
+      - name: terraform validate
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 1.0.2
+        run: terraform validate
+
