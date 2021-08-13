@@ -8,5 +8,4 @@ jobs:
       - uses: hashicorp/setup-terraform@v1
         with:
           terraform_version: 1.0.2
-      - run: terraform init -chdir="./environments/development"
-      - run: terraform validate 
+      - run: ls -lha
