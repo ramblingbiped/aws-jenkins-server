@@ -23,6 +23,10 @@ jobs:
       - name: Clone repo
         uses: actions/checkout@master
 
+      - name: tf init
+        uses: hashicorp/setup-terraform@v1
+        run: terraform init
+
       - name: tfsec
         uses: tfsec/tfsec-sarif-action@v0.0.6
         with:
