@@ -8,7 +8,9 @@ jobs:
       - uses: hashicorp/setup-terraform@v1
         with:
           terraform_version: 1.0.2
-      - run: cd environments/development
       - run: terraform fmt
+        working-directory: ./environments/development
       - run: terraform init
+        working-directory: ./environments/development
       - run: terraform validate
+        working-directory: ./environments/development
