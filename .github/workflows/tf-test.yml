@@ -14,11 +14,11 @@ jobs:
         uses: hashicorp/setup-terraform@v1
         with:
           terraform_version: 1.0.2
-        run: terraform fmt
+      - run: terraform fmt
 
       - name: terraform validate
         uses: hashicorp/setup-terraform@v1
         with:
           terraform_version: 1.0.2
-        run: terraform validate
+      - run: terraform validate
 
