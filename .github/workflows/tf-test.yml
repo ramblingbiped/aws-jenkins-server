@@ -3,13 +3,10 @@ on: [push]
 jobs:
   terraform-format:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ${{ ./environments/development }}
     steps:
       - uses: actions/checkout@v2
       - uses: hashicorp/setup-terraform@v1
         with:
           terraform_version: 1.0.2
-      - run: terraform init
-      - run: terraform fmt
+      - run: terraform init ./environments/development
+      - run: terraform fmt ./environments/development
