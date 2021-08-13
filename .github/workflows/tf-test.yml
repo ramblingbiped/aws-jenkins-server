@@ -7,18 +7,9 @@ jobs:
       run:
         working-directory: ${{ ./environments/development }}
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: terraform fmt
-        uses: hashicorp/setup-terraform@v1
+      - uses: actions/checkout@v2
+      - uses: hashicorp/setup-terraform@v1
         with:
           terraform_version: 1.0.2
+      - run: terraform init
       - run: terraform fmt
-
-      - name: terraform validate
-        uses: hashicorp/setup-terraform@v1
-        with:
-          terraform_version: 1.0.2
-      - run: terraform validate
-
